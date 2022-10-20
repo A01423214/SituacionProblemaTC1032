@@ -1,0 +1,61 @@
+﻿/ TC.1032 Modelación de sistemas mínimos y arquitecturas computacionales
+
+/ Camila Turner - A01423579
+/ Iker Landeros - A01423214
+/ Profesora Mónica Larre Bolaños Cacho
+
+/ Situación Problema: Problema automotriz
+
+/ Programa que analiza las entradas de 3 sensores para saber si avanzar y dar vuelta
+
+/Reiniciar todos los valores a 0
+Load cero
+store sensor1
+store sensor2
+store sensor3
+store avanza
+store giro
+
+/Comienza programa
+Clear
+
+/¿Detecta objeto frente a auto? 0=no ; 1=sí
+Input
+Store sensor1
+Skipcond 400
+Halt
+
+/Si fue 0, carro avanza
+Load uno
+Store avanza
+
+/Sistema GPS indica cambio de dirección? 0=no ; 1=sí
+Input
+Store cambiodir
+Skipcond 800
+HALT
+
+/Si fue 1, debemos saber si el cambio es a la izquierda o derecha
+Input
+Store giro /Girar a la izquierda = 0 ; Girar a la derecha = 1
+Skipcond 800
+Jump GiroIzquierda
+Jump GiroDerecha
+
+GiroIzquierda, Input
+    Store sensor2
+    Halt
+    
+GiroDerecha, Input
+    Store sensor3
+    Halt
+
+
+sensor1, dec 0 /Señal del sensor no. 1
+sensor2, dec 0 /Señal del sensor no. 2
+sensor3, dec 0 /Señal del sensor no. 3
+avanza, dec 0 /Variable que le dice al carro que avance
+cambiodir, dec 0 /GPS avisa si debe o no cambiar de dirección
+giro, dec 0
+cero, dec 0
+uno, dec 1
